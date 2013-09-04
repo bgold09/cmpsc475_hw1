@@ -1,26 +1,154 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2519" systemVersion="12A206j" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1856"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Multiplication Exercises" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqk-fx-lQD">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="s1N-Dn-9ek"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8J-tz-7Rj">
+                                <accessibility key="accessibilityConfiguration" label="Multiplicand label"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="GiZ-7T-FGv"/>
+                                    <constraint firstAttribute="height" constant="53" id="J1F-lN-L2s"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byv-Jk-HEO">
+                                <accessibility key="accessibilityConfiguration" label="Multiplier label"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="vw3-6b-f6P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-be-nEE">
+                                <accessibility key="accessibilityConfiguration" label="Result"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="zw5-PF-Paf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmA-2W-BMP">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0/0 Questions Correct" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1B-vt-z8Q">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Correct!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OvS-Jq-LLN">
+                                <accessibility key="accessibilityConfiguration" label="CorrectLable"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sDV-7V-iQo">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="226" id="BHo-FB-kNT"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="0"/>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eet-Wq-196">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButton:" destination="2" eventType="touchUpInside" id="Dtx-2S-25h"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fmA-2W-BMP" firstAttribute="top" secondItem="byv-Jk-HEO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2sP-we-2ts"/>
+                            <constraint firstItem="byv-Jk-HEO" firstAttribute="trailing" secondItem="J8J-tz-7Rj" secondAttribute="trailing" type="default" id="FdY-0i-WFN"/>
+                            <constraint firstItem="eet-Wq-196" firstAttribute="centerX" secondItem="OvS-Jq-LLN" secondAttribute="centerX" type="default" id="IF0-to-bYC"/>
+                            <constraint firstItem="OvS-Jq-LLN" firstAttribute="centerX" secondItem="w1B-vt-z8Q" secondAttribute="centerX" type="default" id="KUM-WS-53j"/>
+                            <constraint firstItem="fmA-2W-BMP" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="101" id="MA0-1m-wh6"/>
+                            <constraint firstItem="byv-Jk-HEO" firstAttribute="top" secondItem="J8J-tz-7Rj" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MGw-BX-bMy"/>
+                            <constraint firstItem="cqk-fx-lQD" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NUS-sk-H52"/>
+                            <constraint firstItem="byv-Jk-HEO" firstAttribute="leading" secondItem="J8J-tz-7Rj" secondAttribute="leading" type="default" id="NfD-jS-GzH"/>
+                            <constraint firstAttribute="bottom" secondItem="sDV-7V-iQo" secondAttribute="bottom" constant="147" id="QhK-Ac-4BW"/>
+                            <constraint firstItem="i5C-be-nEE" firstAttribute="leading" secondItem="byv-Jk-HEO" secondAttribute="leading" type="default" id="Rjt-cg-Pyb"/>
+                            <constraint firstItem="OvS-Jq-LLN" firstAttribute="centerX" secondItem="cqk-fx-lQD" secondAttribute="centerX" type="default" id="WsL-P4-5RW"/>
+                            <constraint firstAttribute="bottom" secondItem="OvS-Jq-LLN" secondAttribute="bottom" constant="71" id="Xze-J2-FKW"/>
+                            <constraint firstItem="J8J-tz-7Rj" firstAttribute="top" secondItem="3" secondAttribute="top" constant="56" id="ZvU-H3-tKR"/>
+                            <constraint firstAttribute="bottom" secondItem="eet-Wq-196" secondAttribute="bottom" constant="15" id="bwy-cG-igP"/>
+                            <constraint firstAttribute="bottom" secondItem="fmA-2W-BMP" secondAttribute="bottom" constant="274" id="cJU-Q3-fsy"/>
+                            <constraint firstItem="i5C-be-nEE" firstAttribute="top" secondItem="3" secondAttribute="top" constant="203" id="coX-80-4MB"/>
+                            <constraint firstItem="w1B-vt-z8Q" firstAttribute="centerX" secondItem="sDV-7V-iQo" secondAttribute="centerX" type="default" id="lBD-To-Kyh"/>
+                            <constraint firstItem="cqk-fx-lQD" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ppU-Ve-ymh"/>
+                            <constraint firstAttribute="trailing" secondItem="J8J-tz-7Rj" secondAttribute="trailing" constant="71" id="qe1-nY-kjU"/>
+                            <constraint firstAttribute="trailing" secondItem="fmA-2W-BMP" secondAttribute="trailing" constant="45" id="rcT-GG-Ctf"/>
+                            <constraint firstItem="OvS-Jq-LLN" firstAttribute="top" secondItem="w1B-vt-z8Q" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="soj-EA-QZw"/>
+                            <constraint firstAttribute="trailing" secondItem="cqk-fx-lQD" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tnp-Lb-VNf"/>
+                            <constraint firstItem="i5C-be-nEE" firstAttribute="trailing" secondItem="byv-Jk-HEO" secondAttribute="trailing" type="default" id="ycs-wx-Nh3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answerSelections" destination="sDV-7V-iQo" id="77c-KW-afv"/>
+                        <outlet property="correctLabel" destination="OvS-Jq-LLN" id="dcO-sP-8fR"/>
+                        <outlet property="multiplicandLabel" destination="J8J-tz-7Rj" id="Rdt-na-ayO"/>
+                        <outlet property="multiplierLabel" destination="byv-Jk-HEO" id="Iar-xy-pqP"/>
+                        <outlet property="nextButtonOutlet" destination="eet-Wq-196" id="zNV-nl-6Rg"/>
+                        <outlet property="questionCorrectLabel" destination="w1B-vt-z8Q" id="dra-Ju-Su2"/>
+                        <outlet property="resultLabel" destination="i5C-be-nEE" id="k5G-vs-ly3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="nextButton:"/>
+                <relationship kind="outlet" name="answerSelections" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="correctLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="multiplicandLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="multiplierLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nextButtonOutlet" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="questionCorrectLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resultLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
