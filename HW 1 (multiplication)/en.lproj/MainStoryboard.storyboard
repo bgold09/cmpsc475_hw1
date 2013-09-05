@@ -24,7 +24,6 @@
                                 <accessibility key="accessibilityConfiguration" label="Multiplicand label"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="J1F-lN-L2s"/>
-                                    <constraint firstAttribute="width" constant="80" id="JzO-Ww-fpD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -39,10 +38,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-be-nEE">
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="??" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5C-be-nEE">
                                 <accessibility key="accessibilityConfiguration" label="Result"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="74" id="SQU-mh-c2T"/>
+                                    <constraint firstAttribute="width" constant="147" id="yQI-jB-nGw"/>
                                     <constraint firstAttribute="height" constant="53" id="zw5-PF-Paf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="70"/>
@@ -68,10 +67,10 @@
                                     <constraint firstAttribute="width" constant="226" id="BHo-FB-kNT"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="0"/>
-                                    <segment title="1"/>
-                                    <segment title="2"/>
-                                    <segment title="3"/>
+                                    <segment title="**"/>
+                                    <segment title="**"/>
+                                    <segment title="**"/>
+                                    <segment title="**"/>
                                 </segments>
                                 <connections>
                                     <action selector="AnswerSelected:" destination="2" eventType="valueChanged" id="1NX-l6-4ik"/>
@@ -94,27 +93,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fmA-2W-BMP" firstAttribute="top" secondItem="byv-Jk-HEO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2sP-we-2ts"/>
-                            <constraint firstItem="w1B-vt-z8Q" firstAttribute="centerX" secondItem="cqk-fx-lQD" secondAttribute="centerX" type="default" id="62C-qs-6VK"/>
+                            <constraint firstItem="byv-Jk-HEO" firstAttribute="centerX" secondItem="i5C-be-nEE" secondAttribute="centerX" type="default" id="4mR-ec-cqB"/>
                             <constraint firstItem="byv-Jk-HEO" firstAttribute="trailing" secondItem="J8J-tz-7Rj" secondAttribute="trailing" type="default" id="FdY-0i-WFN"/>
                             <constraint firstItem="eet-Wq-196" firstAttribute="centerX" secondItem="OvS-Jq-LLN" secondAttribute="centerX" type="default" id="IF0-to-bYC"/>
-                            <constraint firstItem="J8J-tz-7Rj" firstAttribute="leading" secondItem="byv-Jk-HEO" secondAttribute="leading" type="default" id="JJ2-OR-FhS"/>
                             <constraint firstItem="OvS-Jq-LLN" firstAttribute="centerX" secondItem="w1B-vt-z8Q" secondAttribute="centerX" type="default" id="KUM-WS-53j"/>
-                            <constraint firstItem="fmA-2W-BMP" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="101" id="MA0-1m-wh6"/>
                             <constraint firstItem="byv-Jk-HEO" firstAttribute="top" secondItem="J8J-tz-7Rj" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MGw-BX-bMy"/>
                             <constraint firstItem="cqk-fx-lQD" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="NUS-sk-H52"/>
                             <constraint firstAttribute="bottom" secondItem="sDV-7V-iQo" secondAttribute="bottom" constant="147" id="QhK-Ac-4BW"/>
-                            <constraint firstAttribute="trailing" secondItem="J8J-tz-7Rj" secondAttribute="trailing" constant="71" id="Xss-gZ-zJW"/>
                             <constraint firstAttribute="bottom" secondItem="OvS-Jq-LLN" secondAttribute="bottom" constant="71" id="Xze-J2-FKW"/>
                             <constraint firstItem="J8J-tz-7Rj" firstAttribute="top" secondItem="3" secondAttribute="top" constant="56" id="ZvU-H3-tKR"/>
                             <constraint firstAttribute="bottom" secondItem="eet-Wq-196" secondAttribute="bottom" constant="15" id="bwy-cG-igP"/>
                             <constraint firstAttribute="bottom" secondItem="fmA-2W-BMP" secondAttribute="bottom" constant="274" id="cJU-Q3-fsy"/>
                             <constraint firstItem="i5C-be-nEE" firstAttribute="top" secondItem="3" secondAttribute="top" constant="203" id="coX-80-4MB"/>
+                            <constraint firstItem="byv-Jk-HEO" firstAttribute="leading" secondItem="J8J-tz-7Rj" secondAttribute="leading" type="default" id="joZ-wf-X3C"/>
                             <constraint firstItem="w1B-vt-z8Q" firstAttribute="centerX" secondItem="sDV-7V-iQo" secondAttribute="centerX" type="default" id="lBD-To-Kyh"/>
                             <constraint firstItem="byv-Jk-HEO" firstAttribute="trailing" secondItem="i5C-be-nEE" secondAttribute="trailing" type="default" id="lEu-df-o4r"/>
+                            <constraint firstItem="fmA-2W-BMP" firstAttribute="leading" secondItem="byv-Jk-HEO" secondAttribute="leading" type="default" id="m0q-7Z-few"/>
+                            <constraint firstItem="eet-Wq-196" firstAttribute="leading" secondItem="i5C-be-nEE" secondAttribute="leading" type="default" id="och-NK-48W"/>
                             <constraint firstItem="cqk-fx-lQD" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ppU-Ve-ymh"/>
                             <constraint firstAttribute="trailing" secondItem="fmA-2W-BMP" secondAttribute="trailing" constant="45" id="rcT-GG-Ctf"/>
                             <constraint firstItem="OvS-Jq-LLN" firstAttribute="top" secondItem="w1B-vt-z8Q" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="soj-EA-QZw"/>
                             <constraint firstAttribute="trailing" secondItem="cqk-fx-lQD" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="tnp-Lb-VNf"/>
+                            <constraint firstItem="sDV-7V-iQo" firstAttribute="centerX" secondItem="cqk-fx-lQD" secondAttribute="centerX" type="default" id="uj8-rT-4BB"/>
                         </constraints>
                     </view>
                     <connections>
@@ -124,7 +124,7 @@
                         <outlet property="multiplierLabel" destination="byv-Jk-HEO" id="Iar-xy-pqP"/>
                         <outlet property="nextButtonOutlet" destination="eet-Wq-196" id="zNV-nl-6Rg"/>
                         <outlet property="questionCorrectLabel" destination="w1B-vt-z8Q" id="dra-Ju-Su2"/>
-                        <outlet property="resultLabel" destination="i5C-be-nEE" id="k5G-vs-ly3"/>
+                        <outlet property="resultLabel" destination="i5C-be-nEE" id="cSU-Sb-Suh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>

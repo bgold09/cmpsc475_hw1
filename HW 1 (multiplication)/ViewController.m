@@ -17,7 +17,6 @@
 @property NSInteger multiplicand;
 @property NSInteger multiplier;
 @property NSInteger result;
-@property (strong, nonatomic) NSMutableArray *answers;
 @property NSInteger numberCorrect;
 @property NSInteger currentProblemNumber;
 @property BOOL inProgress;
@@ -40,6 +39,8 @@ static NSString *kStartText = @"Start a Game";
 static NSString *kResetText = @"Reset the Game";
 static NSString *kCorrectText = @"Correct!";
 static NSString *kIncorrectText = @"Incorrect";
+static NSString *kStartNumberText = @"##";
+static NSString *kStartAnswerText = @"**";
 
 @implementation ViewController
 
@@ -47,18 +48,13 @@ static NSString *kIncorrectText = @"Incorrect";
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.answers = [NSMutableArray arrayWithCapacity:kNumAnswers];
-    for (NSInteger i = 0; i < kNumAnswers; i++) {
-        [self.answers insertObject:[NSNumber numberWithInt:0] atIndex:i];
-    }
-    
-    self.answerSelections.selectedSegmentIndex = -1;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    //self.resultLabel.hidden = YES;
 }
 
 - (IBAction)nextButton:(id)sender {
@@ -68,18 +64,12 @@ static NSString *kIncorrectText = @"Incorrect";
         self.nextButtonOutlet.enabled = NO;
         self.inProgress = YES;
         self.nextButtonOutlet.enabled = NO;
-        [self CreateProblem];                                  //create the first problem
+        [self CreateProblem];
     } else if (self.currentProblemNumber < kNumQuestions) {
         // create another question
         [self CreateProblem];
-        self.resultLabel.hidden = YES;
-        self.questionCorrectLabel.hidden = YES;
-        self.correctLabel.hidden = YES;
-        self.nextButtonOutlet.enabled = NO;
-        self.inProgress = YES;
     } else if (self.currentProblemNumber == kNumQuestions) {
-        // done with questions
-        // set button to reset
+        // done with questions, set button to reset
         [sender setTitle:kNextText forState:UIControlStateNormal];
         [self ResetGame];
     }
@@ -90,12 +80,11 @@ static NSString *kIncorrectText = @"Incorrect";
     
     // no answer was selected yet
     if (!self.answerSelected && self.inProgress) {
-        NSString *text = [control titleForSegmentAtIndex: [control selectedSegmentIndex]];
-        NSInteger selectedAnswer = [text integerValue];
-        self.resultLabel.text = [NSString stringWithFormat:@"%d", selectedAnswer];
-        
+        NSInteger selectedAnswer =
+            [[control titleForSegmentAtIndex: [control selectedSegmentIndex]] integerValue];
+
+        // was the correct answer selected?
         if (selectedAnswer == self.result) {
-            // correct answer selected
             self.correctLabel.text = kCorrectText;
             self.numberCorrect++;
         } else {
@@ -103,8 +92,6 @@ static NSString *kIncorrectText = @"Incorrect";
         }
         
         self.currentProblemNumber++;
-        
-        self.resultLabel.text = [NSString stringWithFormat:@"%d", self.result];
         self.resultLabel.hidden = NO;
         
         self.correctLabel.hidden = NO;
@@ -116,6 +103,10 @@ static NSString *kIncorrectText = @"Incorrect";
         self.nextButtonOutlet.enabled = YES;
         self.inProgress = NO;
         self.answerSelections.enabled = NO;
+        
+        if (self.currentProblemNumber == kNumQuestions) {
+            [self.nextButtonOutlet setTitle:kResetText forState:UIControlStateNormal];
+        }
     }
 }
 
@@ -124,13 +115,16 @@ static NSString *kIncorrectText = @"Incorrect";
     self.numberCorrect = 0;
     self.questionCorrectLabel.hidden = YES;
     self.correctLabel.hidden = YES;
-    self.nextButtonOutlet.titleLabel.text = kResetText;
-    self.nextButtonOutlet.enabled = YES;
-    [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
-    self.nextButtonOutlet.enabled = NO;
     self.inProgress = YES;
-    self.nextButtonOutlet.enabled = NO;
-    [self CreateProblem];
+    self.nextButtonOutlet.enabled = YES;
+    self.multiplicandLabel.text = kStartNumberText;
+    self.multiplierLabel.text = kStartNumberText;
+    [self.nextButtonOutlet setTitle:kStartText forState:UIControlStateNormal];
+    [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
+    
+    for (NSInteger i = 0; i < kNumAnswers; i++) {
+        [self.answerSelections setTitle:kStartAnswerText forSegmentAtIndex:i];
+    }
 }
 
 - (void) CreateProblem {
@@ -141,7 +135,8 @@ static NSString *kIncorrectText = @"Incorrect";
     self.multiplicandLabel.text = [NSString stringWithFormat:@"%d", self.multiplicand];
     self.multiplierLabel.text = [NSString stringWithFormat:@"%d", self.multiplier];
     
-    self.answers[0] = [NSNumber numberWithInt:self.result];
+    NSMutableArray *answers = [NSMutableArray arrayWithCapacity:kNumAnswers];    
+    answers[0] = [NSNumber numberWithInt:self.result];
     
     // set label for correct answer
     NSString *resultText = [NSString stringWithFormat:@"%d", self.result];
@@ -162,23 +157,27 @@ static NSString *kIncorrectText = @"Incorrect";
         do {
             NSInteger newNumber = min + arc4random() % (max - min);
             candidate = [NSNumber numberWithInt:newNumber];
-            items = [self.answers subarrayWithRange:range];
+            items = [answers subarrayWithRange:range];
         } while ([items containsObject:candidate] || candidate == 0);
         
-        [self.answers insertObject:candidate atIndex:i];
+        [answers insertObject:candidate atIndex:i];
     }
     
     // exchange the correct answer with another answer
-    NSInteger index = arc4random_uniform(kNumAnswers);
-    [self.answers exchangeObjectAtIndex:0 withObjectAtIndex:index];
+    [answers exchangeObjectAtIndex:0 withObjectAtIndex:arc4random_uniform(kNumAnswers)];
     
     for (NSInteger i = 0; i < kNumAnswers; i++) {
-        NSString *answerText = [NSString stringWithFormat:@"%d", [self.answers[i] integerValue]];
+        NSString *answerText = [NSString stringWithFormat:@"%d", [answers[i] integerValue]];
         [self.answerSelections setTitle:answerText forSegmentAtIndex:i];
     }
     
     [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
     self.answerSelections.enabled = YES;
+    self.resultLabel.hidden = YES;
+    self.questionCorrectLabel.hidden = YES;
+    self.correctLabel.hidden = YES;
+    self.nextButtonOutlet.enabled = NO;
+    self.inProgress = YES;
 }
 
 @end
