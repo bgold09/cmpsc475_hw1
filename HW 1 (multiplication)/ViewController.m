@@ -80,7 +80,6 @@
 }
 
 - (IBAction)AnswerSelected:(id)sender {
-
     UISegmentedControl *control = (UISegmentedControl *) sender;
     
     // no answer was selected yet
