@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *questionCorrectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *correctLabel;
 @property (weak, nonatomic) IBOutlet UIButton *nextButtonOutlet;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 - (IBAction)nextButton:(id)sender;
 - (IBAction)AnswerSelected:(id)sender;
 - (void) CreateProblem;
@@ -54,7 +55,6 @@ static NSString *kStartAnswerText = @"**";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    //self.resultLabel.hidden = YES;
 }
 
 - (IBAction)nextButton:(id)sender {
@@ -104,6 +104,8 @@ static NSString *kStartAnswerText = @"**";
         self.inProgress = NO;
         self.answerSelections.enabled = NO;
         
+        [self.progressBar setProgress:(float) self.currentProblemNumber / (float) kNumQuestions animated:YES];
+        
         if (self.currentProblemNumber == kNumQuestions) {
             [self.nextButtonOutlet setTitle:kResetText forState:UIControlStateNormal];
         }
@@ -121,6 +123,7 @@ static NSString *kStartAnswerText = @"**";
     self.multiplierLabel.text = kStartNumberText;
     [self.nextButtonOutlet setTitle:kStartText forState:UIControlStateNormal];
     [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
+    [self.progressBar setProgress:0.0 animated:NO];
     
     for (NSInteger i = 0; i < kNumAnswers; i++) {
         [self.answerSelections setTitle:kStartAnswerText forSegmentAtIndex:i];
