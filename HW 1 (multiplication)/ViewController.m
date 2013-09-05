@@ -35,6 +35,12 @@
 
 @end
 
+static NSString *kNextText = @"Next";
+static NSString *kStartText = @"Start a Game";
+static NSString *kResetText = @"Reset the Game";
+static NSString *kCorrectText = @"Correct!";
+static NSString *kIncorrectText = @"Incorrect";
+
 @implementation ViewController
 
 - (void)viewDidLoad
@@ -58,7 +64,7 @@
 - (IBAction)nextButton:(id)sender {
     if (self.currentProblemNumber == 0) {
         // have not started problems yet, pose the first question
-        [sender setTitle:@"Next" forState:UIControlStateNormal];
+        [sender setTitle:kNextText forState:UIControlStateNormal];
         self.nextButtonOutlet.enabled = NO;
         self.inProgress = YES;
         self.nextButtonOutlet.enabled = NO;
@@ -74,7 +80,7 @@
     } else if (self.currentProblemNumber == kNumQuestions) {
         // done with questions
         // set button to reset
-        [sender setTitle:@"Next" forState:UIControlStateNormal];
+        [sender setTitle:kNextText forState:UIControlStateNormal];
         [self ResetGame];
     }
 }
@@ -90,10 +96,10 @@
         
         if (selectedAnswer == self.result) {
             // correct answer selected
-            self.correctLabel.text = @"Correct!";
+            self.correctLabel.text = kCorrectText;
             self.numberCorrect++;
         } else {
-            self.correctLabel.text = @"Incorrect";
+            self.correctLabel.text = kIncorrectText;
         }
         
         self.currentProblemNumber++;
@@ -118,7 +124,7 @@
     self.numberCorrect = 0;
     self.questionCorrectLabel.hidden = YES;
     self.correctLabel.hidden = YES;
-    self.nextButtonOutlet.titleLabel.text = @"Reset";
+    self.nextButtonOutlet.titleLabel.text = kResetText;
     self.nextButtonOutlet.enabled = YES;
     [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
     self.nextButtonOutlet.enabled = NO;
