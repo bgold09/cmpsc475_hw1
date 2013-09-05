@@ -57,17 +57,13 @@
 
 - (IBAction)nextButton:(id)sender {
     if (self.currentProblemNumber == 0) {
-        
         // have not started problems yet, pose the first question
         [sender setTitle:@"Next" forState:UIControlStateNormal];
         self.nextButtonOutlet.enabled = NO;
         self.inProgress = YES;
-        
-        //create the first problem
-        [self CreateProblem];
         self.nextButtonOutlet.enabled = NO;
-        
-    } else if (self.currentProblemNumber < kNumAnswers) {
+        [self CreateProblem];                                  //create the first problem
+    } else if (self.currentProblemNumber < kNumQuestions) {
         // create another question
         [self CreateProblem];
         self.resultLabel.hidden = YES;
@@ -78,6 +74,7 @@
     } else if (self.currentProblemNumber == kNumQuestions) {
         // done with questions
         // set button to reset
+        [sender setTitle:@"Next" forState:UIControlStateNormal];
         [self ResetGame];
     }
 }
@@ -92,7 +89,8 @@
         NSInteger selectedAnswer = [text integerValue];
         self.resultLabel.text = [NSString stringWithFormat:@"%d", selectedAnswer];
         
-        if (selectedAnswer == self.result) {         // correct answer selected
+        if (selectedAnswer == self.result) {
+            // correct answer selected
             self.correctLabel.text = @"Correct!";
             self.numberCorrect++;
         } else {
@@ -106,7 +104,9 @@
         
         self.correctLabel.hidden = NO;
         self.questionCorrectLabel.hidden = NO;
-        self.questionCorrectLabel.text = [NSString stringWithFormat:@"%d/%d Questions Correct", self.numberCorrect, self.currentProblemNumber];
+        self.questionCorrectLabel.text =
+            [NSString stringWithFormat:@"%d/%d Questions Correct",
+                                        self.numberCorrect, self.currentProblemNumber];
         
         self.nextButtonOutlet.enabled = YES;
         self.inProgress = NO;
@@ -119,11 +119,12 @@
     self.numberCorrect = 0;
     self.questionCorrectLabel.hidden = YES;
     self.correctLabel.hidden = YES;
-    
     self.nextButtonOutlet.titleLabel.text = @"Reset";
     self.nextButtonOutlet.enabled = YES;
     [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
-    
+    self.nextButtonOutlet.enabled = NO;
+    self.inProgress = YES;
+    self.nextButtonOutlet.enabled = NO;
     [self CreateProblem];
 }
 
@@ -134,6 +135,8 @@
     self.result = self.multiplier * self.multiplicand;
     self.multiplicandLabel.text = [NSString stringWithFormat:@"%d", self.multiplicand];
     self.multiplierLabel.text = [NSString stringWithFormat:@"%d", self.multiplier];
+    
+    self.answers[0] = [NSNumber numberWithInt:self.result];
     
     // set label for correct answer
     NSString *resultText = [NSString stringWithFormat:@"%d", self.result];
@@ -147,7 +150,6 @@
     }
     
     for (NSInteger i = 1; i < kNumAnswers; i++) {
-        
         NSRange range = NSMakeRange(0, i);
         NSArray *items;
         NSNumber *candidate;
@@ -156,7 +158,7 @@
             NSInteger newNumber = min + arc4random() % (max - min);
             candidate = [NSNumber numberWithInt:newNumber];
             items = [self.answers subarrayWithRange:range];
-        } while ([items containsObject:candidate]);
+        } while ([items containsObject:candidate] || candidate == 0);
         
         [self.answers insertObject:candidate atIndex:i];
     }
@@ -166,8 +168,8 @@
     [self.answers exchangeObjectAtIndex:0 withObjectAtIndex:index];
     
     for (NSInteger i = 0; i < kNumAnswers; i++) {
-        resultText = [NSString stringWithFormat:@"%d", [self.answers[i] integerValue]];
-        [self.answerSelections setTitle:resultText forSegmentAtIndex:i];
+        NSString *answerText = [NSString stringWithFormat:@"%d", [self.answers[i] integerValue]];
+        [self.answerSelections setTitle:answerText forSegmentAtIndex:i];
     }
     
     [self.answerSelections setSelectedSegmentIndex:UISegmentedControlNoSegment];
@@ -175,16 +177,6 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
 
 
 
